@@ -1,33 +1,31 @@
+// React
+import React from 'react';
+
+// Typing
+export interface Props {
+    weekType: string[];
+}
+
 // Styles
 import './style.css';
 
-export default function Calendar() {
+const Calendar: React.FC<Props> = ({ weekType }) => {
+    const dateHeaders = weekType.map((date: string, i: number) => {
+        return (
+            <div
+                key={`date_${date}`}
+                className={`DAY ${i === 0 ? 'w-1/2' : ''}`}
+            >
+                <p>{date}</p>
+            </div>
+        );
+    });
+
     return (
-        <section className="CALENDAR flex justify-between text-center w-5/6 max-w-screen-xl rounded-xl p-8 mx-auto my-8 bg-zinc-900">
-            <div className="DAY w-1/2">
-                <p></p>
-            </div>
-            <div className="DAY">
-                <p>Sunday</p>
-            </div>
-            <div className="DAY">
-                <p>Monday</p>
-            </div>
-            <div className="DAY">
-                <p>Tuesday</p>
-            </div>
-            <div className="DAY">
-                <p>Wednesday</p>
-            </div>
-            <div className="DAY">
-                <p>Thursday</p>
-            </div>
-            <div className="DAY">
-                <p>Friday</p>
-            </div>
-            <div className="DAY">
-                <p>Saturday</p>
-            </div>
+        <section className="CALENDAR flex justify-between text-center w-5/6 max-w-screen-xl rounded-xl p-8 mx-auto my-16 bg-zinc-900">
+            {dateHeaders}
         </section>
     );
-}
+};
+
+export default Calendar;
