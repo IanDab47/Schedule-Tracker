@@ -1,0 +1,32 @@
+.TASK :nth-child(odd)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: slategrey;
+  opacity: 25%;
+}
+
+.TASK:nth-child(odd)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: slategrey;
+  opacity: 25%;
+}
+
+.TASK:nth-child(even)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: slategrey;
+  opacity: 10%;
+}

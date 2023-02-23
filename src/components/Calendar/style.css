@@ -1,7 +1,3 @@
-.DAY {
-  width: 100%;
-}
-
 .DAY:not(:first-of-type, :last-of-type) {
   border-right: 1px solid gray;
 }
