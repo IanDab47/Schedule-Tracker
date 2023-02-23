@@ -44,12 +44,12 @@ export default function App() {
             </p>
 
             <form onSubmit={(e) => handleSubmit}>
-                <div>
-                    <input type={'radio'} id="international" checked />
+                <div onClick={() => setWeekType(WeekType.int)}>
+                    <input type={'radio'} id="international" name="weektype" />
                     <label htmlFor="international"> International</label>
                 </div>
-                <div>
-                    <input type={'radio'} id="america" />
+                <div onClick={() => setWeekType(WeekType.usa)}>
+                    <input type={'radio'} id="america" name="weektype" />
                     <label htmlFor="america"> America</label>
                 </div>
             </form>
