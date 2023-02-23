@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 // Components
 import Calendar from './components/Calendar';
+import DateToggle from './components/DateToggle';
 
 const WeekType = {
     int: [
@@ -30,11 +31,6 @@ const WeekType = {
 export default function App() {
     const [weekType, setWeekType] = useState(WeekType.int);
 
-    // Handlers
-    const handleSubmit = (e: Event) => {
-        e.preventDefault();
-    };
-
     return (
         <div className="mx-8 my-4">
             <h1 className="text-9xl">SCHEDULE</h1>
@@ -43,16 +39,7 @@ export default function App() {
                 Complete it your way.
             </p>
 
-            <form onSubmit={(e) => handleSubmit}>
-                <div onClick={() => setWeekType(WeekType.int)}>
-                    <input type={'radio'} id="international" name="weektype" />
-                    <label htmlFor="international"> International</label>
-                </div>
-                <div onClick={() => setWeekType(WeekType.usa)}>
-                    <input type={'radio'} id="america" name="weektype" />
-                    <label htmlFor="america"> America</label>
-                </div>
-            </form>
+            <DateToggle WeekType={WeekType} setWeekType={setWeekType} />
 
             <Calendar weekType={weekType} />
         </div>
