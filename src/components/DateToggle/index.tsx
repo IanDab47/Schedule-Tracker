@@ -5,7 +5,7 @@ import { useState } from 'react';
 // Typing
 export interface Props {
     WeekType: any;
-    setWeekType: any;
+    setWeekType: (val: string[]) => void;
 }
 
 // Styles

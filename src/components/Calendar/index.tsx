@@ -1,5 +1,6 @@
 // React
 import React from 'react';
+import { useState, useEffect } from 'react';
 
 // Typing
 export interface Props {
@@ -14,11 +15,15 @@ import CalendarTable from '../CalendarTable';
 import './style.css';
 
 const Calendar: React.FC<Props> = ({ weekType }) => {
+    const [week, setWeek] = useState<string[]>(weekType);
+
+    useEffect(() => setWeek(weekType), [weekType]);
+
     return (
         <section className="CALENDAR w-5/6 max-w-screen-xl rounded-xl p-8 mx-auto my-16 bg-zinc-900">
-            <DateHeaders weekType={weekType} />
+            <DateHeaders weekType={week} />
 
-            <CalendarTable weekType={weekType} />
+            <CalendarTable weekType={week} />
         </section>
     );
 };

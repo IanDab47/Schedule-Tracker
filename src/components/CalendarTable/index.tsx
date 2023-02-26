@@ -12,16 +12,16 @@ import './style.css';
 
 const CalendarTable: React.FC<Props> = ({ weekType }) => {
     // States
-    const [week, setWeek] = useState(weekType);
-    const [initTime, setInitTime] = useState(700);
-    const [endTime, setEndTime] = useState(100);
-    const [times, setTimes] = useState([0]);
+    const [week, setWeek] = useState<string[]>(weekType);
+    const [initTime, setInitTime] = useState<number>(700);
+    const [endTime, setEndTime] = useState<number>(100);
+    const [times, setTimes] = useState<number[]>([0]);
 
     // Hooks
     useEffect(() => {
         // Edit week array
-        let tempWeek = week;
-        week.length > 7 ? tempWeek.shift() : null;
+        let tempWeek = [...weekType];
+        tempWeek.shift();
         setWeek(tempWeek);
 
         // Set schedule based on init time
@@ -35,7 +35,7 @@ const CalendarTable: React.FC<Props> = ({ weekType }) => {
         }
         generatedTimes.push(time);
         setTimes(generatedTimes);
-    }, [initTime, endTime]);
+    }, [weekType, initTime, endTime]);
 
     return (
         <div className="TABLE grid grid-cols-[1fr_14fr]">
@@ -61,12 +61,16 @@ const CalendarTable: React.FC<Props> = ({ weekType }) => {
                 {week.map((day) => {
                     return (
                         <div
+                            key={day}
                             className={`TASK relative grid grid-rows-[repeat(${times.length},minmax(0,1fr))] isolate`}
                         >
                             {[...Array(times.length).keys()].map((el) => {
                                 return (
-                                    <div className="relative text-md text-center py-1">
-                                        {day}: {el + 1}
+                                    <div
+                                        key={`${day}:${el}`}
+                                        className="CELL relative text-md text-center py-1"
+                                    >
+                                        {day}: {el}
                                     </div>
                                 );
                             })}

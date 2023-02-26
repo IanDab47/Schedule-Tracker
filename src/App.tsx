@@ -1,5 +1,5 @@
 // React
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Components
 import Calendar from './components/Calendar';
@@ -29,7 +29,7 @@ const WeekType = {
 };
 
 export default function App() {
-    const [weekType, setWeekType] = useState(WeekType.int);
+    const [weekType, setWeekType] = useState<string[]>(WeekType.int);
 
     return (
         <div className="mx-8 my-4">
