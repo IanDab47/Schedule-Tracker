@@ -3,19 +3,28 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 // Typing
-export interface Props {}
+export interface Props {
+    weekType: string[];
+}
 
 // Styles
 import './style.css';
 
-const CalendarTable: React.FC<Props> = (props) => {
+const CalendarTable: React.FC<Props> = ({ weekType }) => {
     // States
+    const [week, setWeek] = useState(weekType);
     const [initTime, setInitTime] = useState(700);
     const [endTime, setEndTime] = useState(100);
     const [times, setTimes] = useState([0]);
 
     // Hooks
     useEffect(() => {
+        // Edit week array
+        let tempWeek = week;
+        week.length > 7 ? tempWeek.shift() : null;
+        setWeek(tempWeek);
+
+        // Set schedule based on init time
         let time = initTime;
         let generatedTimes = [];
 
@@ -26,7 +35,7 @@ const CalendarTable: React.FC<Props> = (props) => {
         }
         generatedTimes.push(time);
         setTimes(generatedTimes);
-    }, [initTime]);
+    }, [initTime, endTime]);
 
     return (
         <div className="TABLE grid grid-cols-[1fr_14fr]">
@@ -49,28 +58,21 @@ const CalendarTable: React.FC<Props> = (props) => {
                 })}
             </div>
             <div className="TASK-COLUMN relative grid grid-cols-7 mt-2">
-                <div
-                    className={`TASK relative grid grid-rows-[repeat(${times.length},minmax(0,1fr))]`}
-                >
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                </div>
-                <div
-                    className={`TASK relative grid grid-rows-[repeat(${times.length},minmax(0,1fr))]`}
-                >
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                    <div className="relative text-md text-center py-1"></div>
-                </div>
+                {week.map((day) => {
+                    return (
+                        <div
+                            className={`TASK relative grid grid-rows-[repeat(${times.length},minmax(0,1fr))] isolate`}
+                        >
+                            {[...Array(times.length).keys()].map((el) => {
+                                return (
+                                    <div className="relative text-md text-center py-1">
+                                        {day}: {el + 1}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

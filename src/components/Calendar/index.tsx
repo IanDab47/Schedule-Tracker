@@ -18,7 +18,7 @@ const Calendar: React.FC<Props> = ({ weekType }) => {
         <section className="CALENDAR w-5/6 max-w-screen-xl rounded-xl p-8 mx-auto my-16 bg-zinc-900">
             <DateHeaders weekType={weekType} />
 
-            <CalendarTable />
+            <CalendarTable weekType={weekType} />
         </section>
     );
 };
