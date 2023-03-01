@@ -70,7 +70,7 @@ const CalendarTable: React.FC<Props> = ({ weekType }) => {
                                         key={`${day}:${el}`}
                                         className="CELL relative text-md text-center py-1"
                                     >
-                                        {day}: {el}
+                                        {/* {day}: {el} */}
                                     </div>
                                 );
                             })}

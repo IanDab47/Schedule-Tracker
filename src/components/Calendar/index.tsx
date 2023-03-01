@@ -20,7 +20,7 @@ const Calendar: React.FC<Props> = ({ weekType }) => {
     useEffect(() => setWeek(weekType), [weekType]);
 
     return (
-        <section className="CALENDAR w-5/6 max-w-screen-xl rounded-xl p-8 mx-auto my-16 bg-zinc-900">
+        <section className="CALENDAR xl:w-5/6 max-w-screen-xl rounded-xl p-8 mx-auto my-16 bg-zinc-900">
             <DateHeaders weekType={week} />
 
             <CalendarTable weekType={week} />
